@@ -1,0 +1,103 @@
+# denfine colors
+RED = "\033[91m"
+DARK_ORANGE = "\033[33m"
+ORANGE = "\033[33m"
+LIGHT_YELLOW = "\033[93m"
+YELLOW = "\033[93m"
+GREEN = "\033[92m"
+BLUE = "\033[94m"
+WHITE = "\033[97m"
+RESSET = "\033[0m"
+
+# Define the rings with colors
+Red_Ring = f"""{RED}         
+ _______________________
+|                       |
+|_______________________| 
+{RESSET}"""
+
+Yellow_Ring = f"""{YELLOW}            
+   ___________________
+  |                   |
+  |___________________|              
+{RESSET}"""
+
+Green_Ring = f"""{GREEN}  
+     _______________
+    |               |
+    |_______________|
+{RESSET}"""
+
+Blue_Ring = f"""{BLUE}            
+      _____________
+     |             |
+     |_____________|                          
+{RESSET}"""
+
+White_Ring = f"""{WHITE}
+        _________
+       |         |
+       |_________|                          
+{RESSET}"""
+
+# Initialize the stack
+stack = []
+
+# Function to display the stack
+def display_stack():
+    print("\nCurrent Stack (from top to bottom):")
+    if not stack:
+        print(f"{WHITE}[Empty Stack]{RESSET}")
+    else:
+        for ring in reversed(stack):  # Display the stack from top to bottom
+            print(ring)
+    print(f"{WHITE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESSET}")
+
+# Welcome message
+print(f"{WHITE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESSET}")
+print(f"{WHITE}Welcome to the Stacking Toy Program{RESSET}")
+print(f"{WHITE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESSET}")
+display_stack()
+
+# Game loop
+while True:
+    print("\nOptions:")
+    print(f"{RED}R - Add Red Ring{RESSET}")
+    print(f"{YELLOW}Y - Add Yellow Ring{RESSET}")
+    print(f"{GREEN}G - Add Green Ring{RESSET}")
+    print(f"{BLUE}B - Add Blue Ring{RESSET}")
+    print(f"{WHITE}W - Add White Ring{RESSET}")
+    print(f"{WHITE}U - Unstack Top Ring{RESSET}")
+    print(f"{WHITE}Q - Quit{RESSET}")
+   
+    choice = input("\nWhat would you like to do? ").upper()
+   
+    if choice == 'R':
+        stack.append(Red_Ring)
+        print("You added the Red Ring!")
+    elif choice == 'Y':
+        stack.append(Yellow_Ring)
+        print("You added the Orange Ring!")
+    elif choice == 'G':
+        stack.append(Green_Ring)
+        print("You added the Yellow Ring!")
+    elif choice == 'B':
+        stack.append(Blue_Ring)
+        print("You added the Green Ring!")
+    elif choice == 'W':
+        stack.append(White_Ring)
+        print("You added the Blue Ring!")
+    elif choice == 'U':
+        if stack:
+            removed_ring = stack.pop()
+            print(f"You removed the top ring: {removed_ring}")
+        else:
+            print("The stack is empty! No rings to remove.")
+    elif choice == 'Q':
+        print("Thank you for playing!")
+        break
+    else:
+        print("Invalid choice. Please enter R, Y, G, B, W, U, or Q.")
+   
+    # Display the updated stack
+    display_stack()
