@@ -1,15 +1,12 @@
 # Define colors
 RED = "\033[91m"
-DARK_ORANGE = "\033[33m"
-ORANGE = "\033[33m"
-LIGHT_YELLOW = "\033[93m"
 YELLOW = "\033[93m"
 GREEN = "\033[92m"
 BLUE = "\033[94m"
 WHITE = "\033[97m"
 RESSET = "\033[0m"
 
-# Define the rings with colors
+# Define the ring ascii art and use color
 Red_Ring = f"""{RED}         
  _______________________
 |                       |
@@ -40,12 +37,11 @@ White_Ring = f"""{WHITE}
        |_________|                          
 {RESSET}"""
 
-# Initialize the stack and a set to track added rings
+# Create the stack and use a set to track added rings
 stack = []
-
 added_rings = set()
 
-# Function to display the stack
+# Display funtion to display top to bottom
 def display_stack():
     print("\nCurrent Stack (from top to bottom):")
     if not stack:
@@ -54,6 +50,15 @@ def display_stack():
         for ring in reversed(stack):  # Display the stack from top to bottom
             print(ring)
     print(f"{WHITE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESSET}")
+
+# Push funtion to add rings to the stack
+def push(ring, ring_color, ring_name, color):
+    if ring_color in added_rings:
+        print(f"{color}You cannot add the {ring_name} Ring again!{RESSET}")
+    else:
+        stack.append(ring)
+        added_rings.add(ring_color)
+        print(f"{color}You added the {ring_name} Ring!{RESSET}")
 
 # Welcome message
 print(f"{WHITE}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{RESSET}")
@@ -74,44 +79,20 @@ while True:
    
     choice = input("\nWhat would you like to do? ").upper()
 
+#user choices and push function used
     if choice == 'R':
-        if 'R' in added_rings:
-            print(f"{RED}You cannot add the Red Ring again!{RESSET}")
-        else:
-            stack.append(Red_Ring)
-            added_rings.add('R')
-            print(f"{RED}You added the Red Ring!{RESSET}")
+        push(Red_Ring, 'R', 'Red', RED)
     elif choice == 'Y':
-        if 'Y' in added_rings:
-            print(f"{YELLOW}You cannot add the Yellow Ring again!{RESSET}")
-        else:
-            stack.append(Yellow_Ring)
-            added_rings.add('Y')
-            print(f"{YELLOW}You added the Yellow Ring!{RESSET}")
+        push(Yellow_Ring, 'Y', 'Yellow', YELLOW)
     elif choice == 'G':
-        if 'G' in added_rings:
-            print(f"{GREEN}You cannot add the Green Ring again!{RESSET}")
-        else:
-            stack.append(Green_Ring)
-            added_rings.add('G')
-            print(f"{GREEN}You added the Green Ring!{RESSET}")
+        push(Green_Ring, 'G', 'Green', GREEN)
     elif choice == 'B':
-        if 'B' in added_rings:
-            print(f"{BLUE}You cannot add the Blue Ring again!{RESSET}")
-        else:
-            stack.append(Blue_Ring)
-            added_rings.add('B')
-            print(f"{BLUE}You added the Blue Ring!{RESSET}")
+        push(Blue_Ring, 'B', 'Blue', BLUE)
     elif choice == 'W':
-        if 'W' in added_rings:
-            print(f"{WHITE}You cannot add the White Ring again!{RESSET}")
-        else:
-            stack.append(White_Ring)
-            added_rings.add('W')
-            print(f"{WHITE}You added the White Ring!{RESSET}")
+        push(White_Ring, 'W', 'White', WHITE)
     elif choice == 'U':
         if stack:
-            removed_ring = stack.pop()
+            removed_ring = stack.pop() # Remove the top ring using pop()
             print(f"{WHITE}You removed the top ring:{RESSET} {removed_ring}")
         else:
             print(f"{RED}The stack is empty! No rings to remove.{RESSET}")
